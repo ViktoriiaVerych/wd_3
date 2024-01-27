@@ -1,0 +1,94 @@
+{
+  "endpoints": [
+    {
+      "name": "Metadata about the Uploaded Text File",
+      "url": "/upload",
+      "method": "POST",
+      "request": {
+        "body": [
+          {
+            "key": "file",
+            "type": "file",
+            "description": "The text file to be uploaded."
+          },
+          {
+            "key": "string",
+            "type": "text",
+            "description": "The string to search in the text file."
+          }
+        ]
+      },
+      "response": {
+        "content_type": "application/json",
+        "example": {
+          "length_of_whole_text": 1234,
+          "amount_of_alphanumeric_symbols": 567,
+          "number_of_occurrences": 2
+        }
+      }
+    },
+    {
+      "name": "Parse and Provide Information about the URL",
+      "url": "/parse_url",
+      "methods": ["POST", "GET"],
+      "request": {
+        "body": [
+          {
+            "key": "url",
+            "type": "text",
+            "description": "The URL to be parsed."
+          }
+        ],
+        "params": [
+          {
+            "key": "url",
+            "type": "text",
+            "description": "The URL to be parsed."
+          }
+        ]
+      },
+      "response": {
+        "content_type": "application/json",
+        "example": {
+          "result": "It has https protocol,\nDomain is 'youtu.be',\nThe path to the resource has 2 steps - mpath and deeper,\nQuery parameters (2) are present: {param1 : xxx, param2: qqq}"
+        }
+      }
+    },
+    {
+      "name": "Image Existence Check",
+      "url": "/images/<image_path>",
+      "method": "GET",
+      "request": {
+        "params": [
+          {
+            "key": "image_path",
+            "type": "text",
+            "description": "The path to the image."
+          }
+        ]
+      },
+      "response": {
+        "content_type": "application/json",
+        "examples": [
+          {
+            "status": 200,
+            "message": "Image exists"
+          },
+          {
+            "status": 404,
+            "message": "Image not found"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Documentation",
+      "url": "/",
+      "method": "GET",
+      "response": {
+        "content_type": "text/plain or text/html",
+        "example": "Your actual documentation content goes here."
+      }
+    }
+  ]
+}
